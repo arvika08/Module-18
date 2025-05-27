@@ -23,13 +23,60 @@ To write a Python program to find the shortest possible route that visits every 
 
 ## PYTHON PROGRAM
 
-```
-ENTER YOUR CODE HERE
-```
+from sys import maxsize
+
+from itertools import permutations
+
+V = 4
+
+def travellingSalesmanProblem(graph, s):
+
+    vertex = []
+    
+    for i in range(V):
+    
+        if i != s:
+        
+            vertex.append(i)
+
+    min_path = maxsize
+
+    for perm in permutations(vertex):
+
+        current_pathweight = 0
+        
+        k = s
+        
+        for j in perm:
+        
+            current_pathweight += graph[k][j]
+            
+            k = j
+            
+        current_pathweight += graph[k][s]  
+
+        min_path = min(min_path, current_pathweight)
+
+    return min_path
+
+if __name__ == "__main__":
+
+    graph = [[0, 10, 15, 20],
+    
+             [10, 0, 35, 25],
+             
+             [15, 35, 0, 30],
+             
+             [20, 25, 30, 0]]
+
+    s = int(input())
+    
+    print(travellingSalesmanProblem(graph, s))
 
 ## OUTPUT
-```
-```
+![image](https://github.com/user-attachments/assets/d6bafd31-4cb2-4d6a-a0e6-a1e9df4772de)
 
-##RESULT
+
+## RESULT
+Thus, a Python program to find the shortest possible route that visits every city exactly once and returns to the starting point using the **Travelling Salesman Problem (TSP)** approach was implemented successfully.
 
